@@ -174,3 +174,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+## ---------- LOGGING ----------
+log.txt
