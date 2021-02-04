@@ -6,7 +6,7 @@ from typing import Optional, Union
 from .tag import Tag, Text
 from .tags.default.block import Div
 
-from . import HTDOCS_PATH
+from . import TEMPLATES_PATH
 from .tags import get_tag
 
 
@@ -37,7 +37,7 @@ class Parser(HTMLParser):
             self.tag_stack[-1].add_child(Text(content=data))
 
     def parse(self, *filename):
-        with open(join(HTDOCS_PATH, *filename), 'r') as f:
+        with open(join(TEMPLATES_PATH, *filename), 'r') as f:
             data = f.read()
         self.parse_text(data)
     parse_text = HTMLParser.feed
