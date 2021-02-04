@@ -10,13 +10,13 @@ from html_renderer.selector import selector
 log_file = join(dirname(abspath(__file__)), 'log.txt')
 
 def log(*msg, sep: str = ' ', method = str):
-    with open('out.txt', 'a') as f:
+    with open(log_file, 'a') as f:
         f.write(sep.join(method(m) for m in msg) + '\n')
 
 
-if __name__ == '__main':
-    with open('out.txt', 'a') as f:
-        f.write('=============== RESTART ===============')
+if __name__ == '__main__':
+    with open(log_file, 'a') as f:
+        f.write('=============== RESTART ===============\n')
     
     c = Class()
     c += 'header'
