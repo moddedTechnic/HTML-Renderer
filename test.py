@@ -3,10 +3,6 @@ from html_renderer.parser import Parser
 from html_renderer.attributes import Class
 from html_renderer.selector import selector
 
-# p = Parser()
-# p.parse('templates', 'includes', 'header.shtml')
-# log(p.result)
-
 log_file = join(dirname(abspath(__file__)), 'log.txt')
 
 def log(*msg, sep: str = ' ', method = str):
@@ -18,6 +14,10 @@ if __name__ == '__main__':
     with open(log_file, 'a') as f:
         f.write('=============== RESTART ===============\n')
     
+    # p = Parser()
+    # p.parse('templates', 'includes', 'header.shtml')
+    # log(p.result)
+
     c = Class()
     c += 'header'
     c += Class() + 'banner'
