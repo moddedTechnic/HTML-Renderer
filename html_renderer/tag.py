@@ -1,6 +1,5 @@
 from typing import Iterable, NewType, Union
 from xml.etree.ElementTree import Comment, Element, tostring
-from utils import log
 from .stream import Stream
 import sys
 
@@ -94,12 +93,6 @@ class Tag:
         else: print('    ' * indent + 'children=[]')
         indent -= 1
         print('    ' * indent + ')' + end)
-
-    def log(self):
-        sys.stdout = out = Stream()
-        self.print()
-        sys.stdout = sys.__stdout__
-        log(out.read(sep=''))
 
     def add_child(self, child: Tag):
         self.children.append(child)

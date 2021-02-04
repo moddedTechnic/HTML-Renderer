@@ -3,9 +3,8 @@ from html.parser import HTMLParser
 from os.path import join
 from typing import Optional, Union
 
-from private.renderer.tag import Tag, Text
-from private.renderer.tags.default.block import Div
-from utils import log
+from .tag import Tag, Text
+from .tags.default.block import Div
 
 from . import HTDOCS_PATH
 from .tags import get_tag

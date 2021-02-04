@@ -1,6 +1,4 @@
-from typing import Iterable, NewType, Union
-
-from utils import log
+from typing import NewType, Union
 
 from ..selector import Selectable
 
