@@ -8,8 +8,8 @@ from queue import LifoQueue as Queue
 from typing import Callable, Iterable, NewType, Optional
 from re import sub, compile as re_compile, escape as re_escape
 
-from .. import (HTDOCS_PATH, Environment, export, get_parameters, load_charrefs,
-               log)
+from .utils import load_charrefs, get_parameters, TEMPLATES_PATH
+from .environment import Environment
 
 
 class ContextItem:
@@ -62,8 +62,7 @@ class _RenderStream:
     def read(self):
         return '\n'.join(self.data)
 
-    def flush(self):
-        log('Flushed', self)
+    def flush(self): pass
 
     def print(self):
         print(self.read())
@@ -177,7 +176,7 @@ class _RendererBase(HTMLParser):
         return attrs
         
     def render(self, *filename):
-        with open(join(HTDOCS_PATH, *filename), 'r') as f:
+        with open(join(TEMPLATES_PATH, *filename), 'r') as f:
             data = f.read()
         self.render_text(data)
     render_text = HTMLParser.feed
@@ -608,7 +607,5 @@ class _Renderer(_RendererBase, _TagRenderer):
         _TagRenderer.section_end()(self)
 
 
-
-@export
 def render(*filename):
     _Renderer().render(*filename)
