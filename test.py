@@ -1,11 +1,10 @@
-from html_renderer.selector import selector
 from os.path import abspath, dirname, join
 from unittest import TestCase, main
 
 # from html_renderer.parser import Parser
 from html_renderer.attributes import Class
-
-# from html_renderer.selector import selector
+from html_renderer.attributes.id import Id
+from html_renderer.selector import selector
 
 log_file = join(dirname(abspath(__file__)), 'log.txt')
 
@@ -36,5 +35,17 @@ class TestRenderer(TestCase):
         log(c, method=repr)
         log(c)
         log(c, method=selector)
+
+    def test_Id(self):
+        log('test_Id')
+        i = Id()
+        self.assertEqual(i.value, '')
+        i += 'header'
+        self.assertEqual(i, 'header')
+        i += Id() + 'top'
+        self.assertEqual(i, 'top')
+        log(i, method=repr)
+        log(i)
+        log(i, method=selector)
 
 main()
