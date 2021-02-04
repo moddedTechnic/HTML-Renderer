@@ -8,7 +8,7 @@ class Attribute(Selectable):
 
     def __init__(self) -> None:
         if not self.type: self.type = self.__class__.__name__.lower()
-        self.value: str
+        self.value: str = ''
 
     def __bool__(self) -> bool: return bool(self.value)
     def __repr__(self) -> str: return self.__class__.__name__ + '(\'' + abs(self) + '\')'
