@@ -4,7 +4,12 @@ from ..selector import Selectable
 
 Attribute = NewType('Attribute', Selectable)
 class Attribute(Selectable):
+    'Generic attribute, is the base class for all attributes'
+
     type: str = None
+    ''' The type of attribute, used to produce the attribute string for tags
+    If left as ``None``, gets set to the class name, in lowercase
+    '''
 
     def __init__(self) -> None:
         if not self.type: self.type = self.__class__.__name__.lower()
@@ -26,6 +31,10 @@ class Attribute(Selectable):
         return NotImplemented
 
     def __abs__(self) -> str: return self.value
+
+    def __set__(self, instance, value):
+        if isinstance(value, str): self.value = value
+        else: return NotImplemented
 
 
 from .class_ import *
