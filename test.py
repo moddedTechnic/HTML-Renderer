@@ -42,8 +42,6 @@ class TestRenderer(TestCase):
         self.assertEqual(i.value, '')
         i.value = 'header'
         self.assertEqual(i, 'header')
-        i += Id() + 'top'
-        self.assertEqual(i, 'top')
         log(i, method=repr)
         log(i)
         log(i, method=selector)

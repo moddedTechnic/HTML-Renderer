@@ -32,10 +32,6 @@ class Attribute(Selectable):
 
     def __abs__(self) -> str: return self.value
 
-    def __set__(self, instance, value):
-        if isinstance(value, str): self.value = value
-        else: return NotImplemented
-
 
 from .class_ import *
 from .id import *
