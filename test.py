@@ -40,7 +40,7 @@ class TestRenderer(TestCase):
         log('test_Id')
         i = Id()
         self.assertEqual(i.value, '')
-        i += 'header'
+        i.value = 'header'
         self.assertEqual(i, 'header')
         i += Id() + 'top'
         self.assertEqual(i, 'top')
