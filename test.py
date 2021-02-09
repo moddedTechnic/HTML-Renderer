@@ -2,7 +2,7 @@ from os.path import abspath, dirname, join
 from unittest import TestCase, main
 
 # from html_renderer.parser import Parser
-from html_renderer.attributes import Class
+from html_renderer.attributes import Attributes, Class
 from html_renderer.attributes.id import Id
 from html_renderer.selector import selector
 
@@ -45,5 +45,17 @@ class TestRenderer(TestCase):
         log(i, method=repr)
         log(i)
         log(i, method=selector)
+
+    def test_Attributes(self):
+        log('test_Attributes')
+        attrs = Attributes()
+        attrs += Class('header')
+        attrs += Id('top')
+        self.assertEqual(next(attrs), 'header')
+        self.assertEqual(next(attrs), 'top')
+        self.assertEqual(selector(attrs), '.header#top')
+        log(attrs, method=repr)
+        log(attrs)
+        log(attrs, method=selector)
 
 main()
