@@ -16,9 +16,9 @@ class Attribute(Selectable):
     Used if a subclass doesn't define a __selector__ method.
     '''
 
-    def __init__(self) -> None:
+    def __init__(self, value: Optional[str] = None) -> None:
         if not self.type: self.type = self.__class__.__name__.lower()
-        self.value: str = ''
+        self.value: str = value or ''
 
     def __bool__(self) -> bool: return bool(self.value)
     def __repr__(self) -> str: return self.__class__.__name__ + '(\'' + abs(self) + '\')'
