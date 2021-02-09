@@ -1,6 +1,7 @@
 from typing import NewType, Optional, Union
+from collections import deque
 
-from ..selector import Selectable
+from ..selector import Selectable, selector
 
 Attribute = NewType('Attribute', Selectable)
 class Attribute(Selectable):
@@ -51,6 +52,7 @@ class Attributes(Selectable):
     def __init__(self) -> None:
         self.cls = Class()
         self.id = Id()
+        self._iter = iter(deque((self.cls, self.id)))
 
     def __add__(self, other: Union[Class]) -> Attributes:
         if isinstance(other, (Class, Id,)):
@@ -67,6 +69,7 @@ class Attributes(Selectable):
             except TypeError:
                 self[other.type] = other
         else: return NotImplemented
+        self._iter = iter(deque((self.cls, self.id)))
         return self
 
     def __iter__(self):
@@ -74,4 +77,7 @@ class Attributes(Selectable):
         yield self.id
 
     def __next__(self):
-        return next(iter(self))
+        return next(self._iter)
+
+    def __selector__(self) -> str:
+        return ''.join(selector(a) for a in self)
