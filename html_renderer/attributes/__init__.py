@@ -72,3 +72,6 @@ class Attributes(Selectable):
     def __iter__(self):
         yield self.cls
         yield self.id
+
+    def __next__(self):
+        return next(iter(self))
