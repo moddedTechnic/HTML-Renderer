@@ -1,4 +1,4 @@
-from typing import NewType, Union
+from typing import NewType, Optional, Union
 
 from ..selector import Selectable
 
@@ -9,6 +9,11 @@ class Attribute(Selectable):
     type: str = None
     ''' The type of attribute, used to produce the attribute string for tags
     If left as ``None``, gets set to the class name, in lowercase
+    '''
+
+    selector: Optional[str] = None
+    ''' A template string for the __selector__ method.
+    Used if a subclass doesn't define a __selector__ method.
     '''
 
     def __init__(self) -> None:
@@ -31,6 +36,11 @@ class Attribute(Selectable):
         return NotImplemented
 
     def __abs__(self) -> str: return self.value
+
+    def __selector__(self) -> str:
+        if self.selector:
+            return self.selector.format(**self.__dict__)
+        return NotImplemented
 
 
 from .class_ import *
